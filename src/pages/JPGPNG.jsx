@@ -105,6 +105,7 @@ const JPGPNG = () => {
 
   return (
     <>
+     <h1 className="m-2 mt-5 text-xl md:text-2xl text-center text-amber-100"> free online JPG to PNG Converter</h1>
       <section className="flex flex-col items-center justify-center m-auto w-[80%] md:w-[70%] lg:w-[65%] space-y-4 rounded-lg p-4 mt-4 bg-[#2f3028]">
         <Helmet>
           <title>Convert JPG to PNG | Simple Image Converter</title>
@@ -126,12 +127,12 @@ const JPGPNG = () => {
           />
           <meta
             property="og:image"
-            content="URL_TO_AN_IMAGE_REPRESENTING_YOUR_TOOL"
+            content="https://imageconverter1.netlify.app/"
           />
-          <meta property="og:url" content="YOUR_PAGE_URL" />
+          <meta property="og:url" content="https://imageconverter1.netlify.app/" />
           <meta name="robots" content="index, follow" />
-          <meta name="author" content="Your Name or Company" />
-          <link rel="canonical" href="YOUR_PAGE_URL" />
+          <meta name="author" content="Image Converter" />
+          <link rel="canonical" href="https://imageconverter1.netlify.app/" />
         </Helmet>
 
         <section className="flex flex-col items-center justify-center m-auto w-[80%] md:w-[70%] lg:w-[65%] space-y-4 md:space-y-0 md:space-x-4  rounded-lg p-4 mt-4 ">

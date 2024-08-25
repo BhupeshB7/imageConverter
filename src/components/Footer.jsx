@@ -10,9 +10,11 @@ import {
   FaImage,
   FaFileImage,
   FaCompressArrowsAlt,
+  FaLink,
 } from "react-icons/fa";
 import { MdFeedback } from "react-icons/md";
 import { RiExchangeFundsFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 // import logo from "../../assets/B.png";
 
 const footerIcons = [
@@ -75,15 +77,18 @@ const Footer = () => {
           <div>
             <h6 className="text-white text-lg mb-2">Products Links</h6>
             <div className="flex flex-col space-y-2">
-              <a href="/jpg-to-png" className="text-gray-400 flex items-center">
+              <Link to="/jpg-to-png" className="text-gray-400 flex items-center">
                 <FaImage className="mr-2" /> JPG to PNG
-              </a>
-              <a href="/png-to-jpg" className="text-gray-400 flex items-center">
+              </Link>
+              <Link to="/png-to-jpg" className="text-gray-400 flex items-center">
                 <FaFileImage className="mr-2" /> PNG to JPG
-              </a>
-              <a href="/about" className="text-gray-400 flex items-center">
+              </Link>
+              <Link to="/url-to-image" className="text-gray-400 flex items-center">
                 <FaCompressArrowsAlt className="mr-2" /> Image Resize
-              </a>
+              </Link>
+              <Link to="/url-to-image" className="text-gray-400 flex items-center">
+                <FaLink className="mr-2" /> URL to Image
+              </Link>
             </div>
           </div>
           {/* part-4 */}
