@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NProgress from "nprogress";
 import { Helmet } from "react-helmet";
@@ -9,10 +9,28 @@ import Tool from "../components/Tool";
 
 const formats = ["jpg", "jpeg", "png", "webp", "gif", "bmp"]; // Add more formats if needed
 
+const IMAGE_STORAGE_KEY = "convertedImages";
+const IMAGE_STORAGE_EXPIRY_KEY = "convertedImagesExpiry";
+const STORAGE_EXPIRY_DURATION = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
+
 const ImageConverter = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [convertedImages, setConvertedImages] = useState([]);
   const [format, setFormat] = useState("jpg");
+
+  useEffect(() => {
+    // Retrieve stored images if not expired
+    const storedImages = sessionStorage.getItem(IMAGE_STORAGE_KEY);
+    const expiryTime = sessionStorage.getItem(IMAGE_STORAGE_EXPIRY_KEY);
+
+    if (storedImages && expiryTime && Date.now() < parseInt(expiryTime, 10)) {
+      setConvertedImages(JSON.parse(storedImages));
+    } else {
+      // Clear expired data
+      sessionStorage.removeItem(IMAGE_STORAGE_KEY);
+      sessionStorage.removeItem(IMAGE_STORAGE_EXPIRY_KEY);
+    }
+  }, []);
 
   const isValidImageUrl = (url) => {
     return url.match(/\.(jpeg|jpg|png|webp|gif|bmp)$/) != null;
@@ -43,10 +61,16 @@ const ImageConverter = () => {
       const blob = new Blob([response.data], { type: `image/${format}` });
       const convertedImageUrl = URL.createObjectURL(blob);
 
-      setConvertedImages([
+      const newConvertedImages = [
         ...convertedImages,
         { url: convertedImageUrl, format },
-      ]);
+      ];
+
+      // Save to session storage
+      sessionStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(newConvertedImages));
+      sessionStorage.setItem(IMAGE_STORAGE_EXPIRY_KEY, (Date.now() + STORAGE_EXPIRY_DURATION).toString());
+
+      setConvertedImages(newConvertedImages);
     } catch (error) {
       if (error.response && error.response.status === 404) {
         toast.error("Image not found. Please check the URL.");
@@ -74,6 +98,9 @@ const ImageConverter = () => {
   const handleDelete = (index) => {
     const updatedImages = convertedImages.filter((_, i) => i !== index);
     setConvertedImages(updatedImages);
+
+    // Update session storage
+    sessionStorage.setItem(IMAGE_STORAGE_KEY, JSON.stringify(updatedImages));
   };
 
   const handleDownload = (url, format) => {
