@@ -262,6 +262,7 @@ import Tool from "../components/Tool";
 import { motion } from "framer-motion";
 import { FaLink } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const Home = () => {
   const [file, setFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -389,6 +390,13 @@ const Home = () => {
 
   return (
     <>
+    <Helmet>
+        <title>Free Online Image Converter | Convert JPG, PNG, WEBP</title>
+        <meta name="description" content="Convert images between JPG, PNG, and WEBP formats with our free online tool. Fast and easy image conversion at your fingertips." />
+        <meta name="keywords" content="image converter, JPG to PNG, PNG to JPG, WEBP to JPG, free online converter" />
+        <meta name="author" content="Image Converter" />
+        <link rel="canonical" href="https://image-converter1.netlify.app" />
+      </Helmet>
       <h1 className="text-2xl font-bold text-amber-100 text-center md:text-5xl m-6">
         Free Online Image Converter
       </h1>
@@ -398,7 +406,7 @@ const Home = () => {
         fingertips.
       </p>
 
-      <section className="flex flex-col  justify-center m-auto w-[80%] md:w-[70%] lg:w-[65%] space-y-4 md:space-y-0 md:space-x-4 border-2 border-dashed border-amber-200 rounded-lg p-4 mt-4 bg-[#5d5f4b]">
+      <section className="flex flex-col  justify-center m-auto w-[80%] md:w-[70%] lg:w-[65%] space-y-4 md:space-y-0  border-2 border-dashed border-amber-200 rounded-lg p-4 mt-4 bg-[#5d5f4b]">
         <Link
           to="/url-to-image"
           className="flex flex-row items-center justify-end mt-4 gap-2"

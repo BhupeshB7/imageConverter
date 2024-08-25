@@ -76,6 +76,7 @@ export class AuthService {
       const response = await this.account.createOAuth2Session(
         "google",
         // "http://192.168.142.16:3000/",
+        "https://imageconverter1.netlify.app",
         "http://localhost:3000",
         // "http://localhost:3000/google-loginFail"
       );

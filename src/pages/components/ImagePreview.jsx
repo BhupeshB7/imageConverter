@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaTrashAlt } from "react-icons/fa";
 
-const formats = ["jpg", "jpeg", "png", "webp", "gif", "bmp"];
+const formats = ["jpg", "jpeg", "png", "webp", "gif", "bmp", "svg"];
 
 const ImagePreview = ({ imagePreview, format, onFormatChange, onDelete }) =>
   imagePreview && (
